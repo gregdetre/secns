@@ -7,17 +7,19 @@ function [uxi movies_md] = import_secns()
 % UXI = USERS x ITEMS dense matrix of ratings, based on 
 
 
-[dat, cols, users, movies, ratings, timestamps nUsers nMovies] = load_data();
+[dat, cols, users, movies, ratings, timestamps] = load_data();
 
 [movies_md] = load_movies_md();
 
 % try generating the USERS x MOVIES matrix 2 different ways
 % and confirm they produce the same thing
+nUsers = count(unique(users));
+nMovies = count(unique(movies));
 uxi = generate_uxi(nUsers, nMovies, users, movies, ratings);
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-function [dat, cols, users, movies, ratings, timestamps nUsers nMovies] = load_data()
+function [dat, cols, users, movies, ratings, timestamps] = load_data()
 
 % DAT = nPoints x 4
 dat = load('data/ml-100k/u.data');
@@ -69,4 +71,4 @@ function [movies_md] = load_movies_md()
 %     '1'    'Toy Story (1995)'    '01-Jan-1995'    ''    [1x53 char]
 %   - movies_md.data(1,:) = genre booleans
 %     0     0     0     1     1     1     0     0     0     0     0     0     0     0     0     0     0     0     0
-movies_md = importdata('sample/ml-100k/u.item', '|');
+movies_md = importdata('data/ml-100k/u.item', '|');
