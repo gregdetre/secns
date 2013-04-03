@@ -1,6 +1,10 @@
 function [uxi movies_md] = import_secns()
 
 % Analyse the 100k movielens dataset.
+%
+% [UXI MOVIES_MD] = IMPORT_SECNS()
+%
+% UXI = USERS x ITEMS dense matrix of ratings, based on 
 
 
 [dat, cols, users, movies, ratings, timestamps nUsers nMovies] = load_data();
@@ -16,7 +20,7 @@ uxi = generate_uxi(nUsers, nMovies, users, movies, ratings);
 function [dat, cols, users, movies, ratings, timestamps nUsers nMovies] = load_data()
 
 % DAT = nPoints x 4
-dat = load('sample/ml-100k/u.data');
+dat = load('data/ml-100k/u.data');
 
 cols.user = 1;
 cols.movie = 2;
