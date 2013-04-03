@@ -13,8 +13,8 @@ function [uxi movies_md] = import_secns()
 
 % try generating the USERS x MOVIES matrix 2 different ways
 % and confirm they produce the same thing
-nUsers = count(unique(users));
-nMovies = count(unique(movies));
+nUsers = numel(unique(users));
+nMovies = numel(unique(movies));
 uxi = generate_uxi(nUsers, nMovies, users, movies, ratings);
 
 
@@ -38,7 +38,7 @@ timestamps = dat(:, cols.timestamp);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function [uxi] = generate_uxi(nUsers, nMovies, users, movies, ratings)
 
-nPoints = count(ratings);
+nPoints = numel(ratings);
 
 uxi = nan(nUsers, nMovies);
 for r=1:nPoints
